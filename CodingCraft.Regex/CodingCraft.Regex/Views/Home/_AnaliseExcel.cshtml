@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-lg-offset-3 col-md-offset-3 col-lg-6 col-md-6 col-sm-12 text-center">
-        <h3>Cidades com mais roubos de celular</h3>
+        <h3>Cidades com mais incidência</h3>
 
         <canvas id="CanvasCidade" width="400" height="400"></canvas>
 
@@ -20,7 +20,7 @@
 
 <div class="row">
     <div class="col-lg-offset-3 col-md-offset-3 col-lg-6 col-md-6 col-sm-12 text-center">
-        <h3>Períodos mais comuns de roubos</h3>
+        <h3>Períodos mais comuns</h3>
 
         <canvas id="CanvasPeriodos" width="400" height="400"></canvas>
 
@@ -29,7 +29,7 @@
 
 <div class="row">
     <div class="col-lg-offset-3 col-md-offset-3 col-lg-6 col-md-6 col-sm-12 text-center">
-        <h3>Ruas com maiores indices de roubos</h3>
+        <h3>Ruas com maiores indices</h3>
 
         <canvas id="CanvasLogradouros" width="400" height="400"></canvas>
 
@@ -52,7 +52,7 @@
         data: {
             labels: $.map(cidades, function (key, value) { return key.Text }),
             datasets: [{
-                label: 'Roubos de aparelhos celular',
+                label: 'Cidades com maior incidência',
                 data: $.map(cidades, function (key, value) { return key.Value }),
                 backgroundColor: [
                     'rgb(255, 99, 132)',
@@ -142,7 +142,7 @@
         data: {
             labels: $.map(logradouros, function (key, value) { return key.Text }),
             datasets: [{
-                label: 'Logradouros com maiores indices de roubo',
+                label: 'Logradouros com maiores indices',
                 data: $.map(logradouros, function (key, value) { return key.Value }),
                 backgroundColor: [
                     'rgb(255, 99, 132)',
