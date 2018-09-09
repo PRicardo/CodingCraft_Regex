@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<link href="~/Content/Index.css" rel="stylesheet" />
+
+<h2>Coding Craft - Regex</h2>
+
+<div class="modal" id="modelLoader" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="loader"> </div>
+</div>
+
+<hr />
+
+<div class="row" style="margin-top: 20px;">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "form-inline" }))
+        {
+            <div class="form-group">
+                <label for="file">Arquivo Excel:</label>
+                <input type="file" class="form-control" id="excelRead">
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" id="btn-analise" type="button" onclick="upload()" disabled>Analisar</button>
+            </div>
+
+        }
+    </div>
+</div>
+
+<hr />
+
+<div id="content-analise">
+
+</div>
+
+<script src="~/Scripts/MyCustomScript.js"></script>

@@ -1,0 +1,183 @@
+﻿@using System.Web.Script.Serialization;
+
+@{
+    ViewBag.Title = "Home Page";
+
+
+    var cidades = (List<SelectListItem>)ViewBag.Cidades;
+    var periodos = (List<SelectListItem>)ViewBag.Periodos;
+    var logradouros = (List<SelectListItem>)ViewBag.Logradouros;
+}
+
+<div class="row">
+    <div class="col-lg-offset-3 col-md-offset-3 col-lg-6 col-md-6 col-sm-12 text-center">
+        <h3>Cidades com mais roubos de celular</h3>
+
+        <canvas id="CanvasCidade" width="400" height="400"></canvas>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-offset-3 col-md-offset-3 col-lg-6 col-md-6 col-sm-12 text-center">
+        <h3>Períodos mais comuns de roubos</h3>
+
+        <canvas id="CanvasPeriodos" width="400" height="400"></canvas>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-offset-3 col-md-offset-3 col-lg-6 col-md-6 col-sm-12 text-center">
+        <h3>Ruas com maiores indices de roubos</h3>
+
+        <canvas id="CanvasLogradouros" width="400" height="400"></canvas>
+
+    </div>
+</div>
+
+<script>
+    var modeloCidade = '@Html.Raw(Json.Encode(cidades))';
+    var cidades = JSON.parse(modeloCidade);
+
+    var modeloPeriodo = '@Html.Raw(Json.Encode(periodos))';
+    var periodos = JSON.parse(modeloPeriodo);
+
+    var modeloLogradouros = '@Html.Raw(Json.Encode(logradouros))';
+    var logradouros = JSON.parse(modeloLogradouros);
+    
+    var ctCid = document.getElementById("CanvasCidade").getContext('2d');
+    var ChartCidades = new Chart(ctCid, {
+        type: 'bar',
+        data: {
+            labels: $.map(cidades, function (key, value) { return key.Text }),
+            datasets: [{
+                label: 'Roubos de aparelhos celular',
+                data: $.map(cidades, function (key, value) { return key.Value }),
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 206, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)',
+                    'rgb(255, 159, 64)'
+                ],
+                borderColor: [
+                    'rgb(255,99,132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 206, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)',
+                    'rgb(255, 159, 64)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: false,
+                    beginAtZero: true,
+                    scaleLabel: {
+                        labelString: 'Month'
+                    },
+                    ticks: {
+                        stepSize: 1,
+                        min: 0,
+                        autoSkip: false
+                    }
+                }]
+            }
+        }
+    });
+
+    var ctPer = document.getElementById("CanvasPeriodos").getContext('2d');
+    var chartPeriodos = new Chart(ctPer, {
+        type: 'line',
+        data: {
+            labels: $.map(periodos, function (key, value) { return key.Text }),
+            datasets: [{
+                label: 'Períodos mais comuns',
+                data: $.map(periodos, function (key, value) { return key.Value }),
+                backgroundColor: [
+                    'rgb(255, 99, 132, 0.2)',
+                    'rgb(54, 162, 235, 0.2)',
+                    'rgb(255, 206, 86, 0.2)',
+                    'rgb(75, 192, 192, 0.2)',
+                    'rgb(153, 102, 255, 0.2)',
+                    'rgb(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: false,
+                    beginAtZero: true,
+                    scaleLabel: {
+                        labelString: 'Month'
+                    },
+                    ticks: {
+                        stepSize: 1,
+                        min: 0,
+                        autoSkip: false
+                    }
+                }]
+            }
+        }
+    });
+
+    var ctLog = document.getElementById("CanvasLogradouros").getContext('2d');
+    var chartLogradouros = new Chart(ctLog, {
+        type: 'bar',
+        data: {
+            labels: $.map(logradouros, function (key, value) { return key.Text }),
+            datasets: [{
+                label: 'Logradouros com maiores indices de roubo',
+                data: $.map(logradouros, function (key, value) { return key.Value }),
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 206, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)',
+                    'rgb(255, 159, 64)'
+                ],
+                borderColor: [
+                    'rgb(255,99,132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 206, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)',
+                    'rgb(255, 159, 64)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: false,
+                    beginAtZero: true,
+                    scaleLabel: {
+                        labelString: 'Month'
+                    },
+                    ticks: {
+                        stepSize: 1,
+                        min: 0,
+                        autoSkip: false
+                    }
+                }]
+            }
+        }
+    });
+</script>
